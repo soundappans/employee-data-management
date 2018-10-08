@@ -1,0 +1,83 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="employeeapp">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Angular - Edureka - Employee Data Management</title>
+
+	<!-- SCROLLS -->
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+		#todo-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="service/core.js"></script>
+	<link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+	<script src="javascripts/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		
+		$(function() {
+		var datepicker=$("#datepicker").datepicker(
+						{changeMonth:true,changeYear:true,maxDate:"-1M -1D -1Y",dateFormat:"yy-mm-dd"}
+												);
+			$("#datepicker").bind("keydown", function (event) {
+			event.preventDefault();
+			});
+			});
+  	</script>
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
+<body ng-controller="mainController">
+	<div align="center">
+		<h1 class="display-4">Employee Data Management</h1>
+		<h4>Create, update or remove employee data...</h4>
+	</div>
+	<br/>
+    <div class="container">
+		<div class="row">
+			<table class="table">
+				<form method="post">
+					<tr>
+						<th>Name</th><th>Email</th><th>Date of Birth</th><th>Department</th><th>Gender</th><th>Age</th><th></th><th></th>
+					</tr>
+					<tr>
+						<td><input type="text" name="name" required ng-model="emp.name" value="{{ emp.name }}" class="form-control" placeholder="Name"/></td>
+						<td><input type="email" name="email" ng-model="emp.email" required value="{{ emp.email }}" class="form-control"  placeholder="abc@xyz.com"/></td>
+						<!--<td><input type="date" name="dateofbirth" ng-model="emp.dateofbirth" required  value="{{getDate(emp.dateofbirth)}}" class="form-control"  placeholder="mm/dd/yyyy"/></td>-->
+						<td><input type="text" id="datepicker" name="dateofbirth" ng-model="emp.dateofbirth" required  value="{{emp.dateofbirth}}" class="form-control"  placeholder="YYYY-MM-DD"></td>
+						<td><input type="text" name="department" ng-model="emp.department" required value="{{ emp.department }}" class="form-control"  placeholder="Department"/></td>
+						<td><input type="text" name="gender" ng-model="emp.gender" required value="{{ emp.gender }}" class="form-control" placeholder="Gender"/></td>
+						<td><input type="text" name="age" ng-model="age" readonly  class="form-control" placeholder="Age"/></td>
+						<td><button type="submit" name="addEmployee" class="btn btn-success" ng-click="addEmployee(emp)">Add Employee</button></td>
+						<td><button type="submit" name="updateEmployee" class="btn btn-success" ng-click="updateEmployee(emp._id, emp)">Update Employee</button></td>
+					</tr>
+				</form>
+				<tr ng-repeat="emp in employees">
+					<td>{{emp.name}}</td>
+					<td>{{emp.email}}</td>
+					<td>{{emp.dateofbirth | date:'yyyy-MM-dd'}}</td>
+					<td>{{emp.department}}</td>
+					<td>{{emp.gender}}</td>
+					<td>{{getAge(emp.dateofbirth)}}</td>
+					<!--<td>{{ new Date().getFullYear() - employee.dateofbirth.getFullYear() }}  (Date().getFullYear())-(emp.dateofbirth | date:'yyyy')}}</td>-->
+					<td colspan="2"><button name="deleteEmployee" ng-click="deleteEmployee(emp._id)" class="btn btn-danger">Delete</button>
+					<button name="editEmployee" ng-click="getEmployee(emp._id)" class="btn btn-primary">Edit</button></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+</body>
+</html>

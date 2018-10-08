@@ -1,0 +1,14 @@
+{
+  "name": "employeeapp",
+  "version": "1.0.0",
+  "description": "Employee Application",
+  "main": "app.js",
+  "author": "Sound",
+  "dependencies": {
+    "express": "~4.7.2",
+    "mongoose": "~4.11.9",
+    "morgan": "~1.2.2",
+    "body-parser": "~1.5.2",
+    "method-override": "~2.1.2"
+  }
+}
