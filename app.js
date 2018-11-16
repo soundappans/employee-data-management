@@ -11,6 +11,8 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 
 //changes in dev branch
 
+//modified in dev branch again
+
 // configuration ===============================================================
 mongoose.connect(database.url,  {server : {auto_reconnect:true}}); 	// connect to mongoDB database on modulus.io
 
