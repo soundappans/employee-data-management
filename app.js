@@ -9,6 +9,8 @@ var morgan = require('morgan'); 		// log requests to the console (express4)
 var bodyParser = require('body-parser'); 	// pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
+//changes in dev branch
+
 // configuration ===============================================================
 mongoose.connect(database.url,  {server : {auto_reconnect:true}}); 	// connect to mongoDB database on modulus.io
 
